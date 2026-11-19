@@ -1,0 +1,37 @@
+
+services:
+  # ── PostgreSQL Database ──────────────────────────────────
+  db:
+    image: postgres:16
+    container_name: mental_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mental_checkin
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: "123456"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # ── FastAPI Backend ──────────────────────────────────────
+  backend:
+    build: ./backend
+    container_name: mental_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://admin:123456@db:5432/mental_checkin
+      # Cache HuggingFace model để không download lại sau mỗi rebuild
+      TRANSFORMERS_CACHE: /root/.cache/huggingface
+      HF_HOME: /root/.cache/huggingface
+    volumes:
+      - ./backend:/app              # Hot reload code
+      - hf_cache:/root/.cache/huggingface  # Cache model ~350MB
+
+volumes:
+  pgdata:
+  hf_cache:
