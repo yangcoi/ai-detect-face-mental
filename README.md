@@ -10,6 +10,24 @@ The system captures student facial expressions through a web camera, runs a mult
 
 ---
 
+## 2. Project Status & Current Maturity Level
+
+**Current Status:** Functional Academic / Capstone Research Prototype.
+
+This repository was developed as an exploratory engineering project to validate the feasibility of real-time client-server facial emotion and fatigue monitoring pipelines.
+
+### What is implemented:
+- Computer vision pipeline integrating OpenCV Haar Cascades, facial landmarks, EAR eye aspect ratio drowsiness calculation, and ONNX Vision Transformer emotion classification.
+- FastAPI backend serving inference endpoints, authentication, and session logging.
+- Next.js 14 web client featuring live webcam frame streaming and emotion distribution graphs.
+- Docker Compose configuration for multi-service local deployment.
+
+### Scope & Limitations:
+- Non-clinical research tool: Designed strictly as an assistive screening prototype for educational and exploratory purposes, not a certified clinical or medical diagnosis device.
+- CPU inference optimization: The current ONNX model runs with CPU quantization; multi-stream concurrent production scaling requires GPU infrastructure.
+
+---
+
 ## 2. System Architecture
 
 The architecture consists of an AI inference backend and a modern web dashboard:
