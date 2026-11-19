@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.local
+
+# Python virtual env
+venv/
+.venv/
+
+# Next.js build
+.next/
+out/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (local dev)
+pgdata/
+
+# IDE
+.vscode/
+.idea/
